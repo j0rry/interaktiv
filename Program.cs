@@ -1,18 +1,11 @@
 ﻿
 
-using System.Collections.Immutable;
-using System.Diagnostics;
-using System.Formats.Asn1;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-
 class Program{
     static void Main(){
         loadingAnimation();
         Random random = new Random();
 
         bool gameOver = true;
-        bool input = false;
         int money = 0;
         int room = 0;
         string[] roomNames = { "Main Room","Vault Room", "Living Room", "Kitchen"};
@@ -27,7 +20,6 @@ class Program{
         
         while(!gameOver) { // Kollar om spelet är över
             Console.Clear();
-            input = false;
             Console.WriteLine($"Pengar: {money}");
 
             if(room <= 3){ // Använder för att det inte ska bli error
