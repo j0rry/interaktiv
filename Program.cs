@@ -1,5 +1,7 @@
 ﻿
 
+using System.Security.AccessControl;
+
 class Program{
     static void Main(){
         loadingAnimation();
@@ -9,7 +11,8 @@ class Program{
         int money = 0;
         int room = 0;
         string[] roomNames = { "Main Room","Vault Room", "Living Room", "Kitchen"};
-        //int vaultCode = random.Next(1000, 9999);
+        
+
         int vaultCode = 1000;
         bool vaultIsRobbed = false;
 
@@ -28,7 +31,7 @@ class Program{
             
             switch(room){ // Kollar om rummet är 0, 1, 2, 3 eller 9
                 case 0:
-                    Console.WriteLine("Du är i ett hus, du ser 3 dörrar framför dig");
+                    Console.WriteLine("Du är i ett hus, du ser 3 dörrar framför dig \n");
                     roomInput(ref room); // Kollar vilket rum du vill gå till
                     break;
                 case 1:
@@ -37,9 +40,17 @@ class Program{
                         roomInput(ref room);
                     }
                     else {
-                        Console.WriteLine("Du kliver in i ett rum med ett kassaskåp, kassaskåpet är låst");
+                        Console.WriteLine("Du kliver in i ett rum med ett kassaskåp, kassaskåpet är låst \n");
                         vaultManager(ref vaultCode, ref room, ref money, random.Next(50, 1000), ref vaultIsRobbed);
                     }
+                    break;
+                case 2:
+                    Console.WriteLine("Du kliver in i ett rum med en soffa och en TV \n");
+                    roomInput(ref room);
+                    break;
+                case 3:
+                    Console.WriteLine("Du kliver in i ett rum med en köksbänk och en spis \n");
+                    roomInput(ref room);
                     break;
                 case 9:
                     gameOver = true;
@@ -51,13 +62,16 @@ class Program{
 
             }
         }
+
+        Console.WriteLine("Tryck på valfri tangent för att avsluta...");
+        Console.ReadKey();
     }
 
     static void roomInput(ref int room){ // Kollar vilket rum du vill gå till
         while(true){
             System.Console.WriteLine("1. Vault Room");
             System.Console.WriteLine("2. Living Room");
-            System.Console.WriteLine("4. Kitchen");
+            System.Console.WriteLine("3. Kitchen");
             System.Console.Write("Skriv in vilket rum du vill gå till: ");
             string input = Console.ReadLine() ?? string.Empty;
             if (input.ToLower() == "exit")
